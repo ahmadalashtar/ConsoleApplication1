@@ -6,9 +6,9 @@
 #include <stack>
 #include <thread>
 #include<map>
+
 #define  log(x) (std::cout << x << std::endl)
 
-void print(std::vector <int> const& a);
 void test(int x)
 {
 	log("hello from test thread");
@@ -49,36 +49,21 @@ struct tree {
 	struct node* left;
 	struct node* right;
 };
-int main()
+bool finished = false;
+void working()
 {
-	int max = 0;
-	int curl = 0;
-	int curr = 0;
-
-	std::vector<int>blocks{ 3,1,3,4,5,2,6,4 };
-	for (int i = 0; i < blocks.size(); i++)
-	{
-		curl = 0;
-		curr = 0;
-		if (i) {
-			curl = checkleft(blocks, i);
-		}
-		if (i < blocks.size() - 1)
-		{
-			curr = checkright(blocks, i);
-			i += curr;
-
-		}
-		if (curr + curl > max)
-			max = curr + curl;
-	}
-	log(max + 1);
+	while (!finished)
+		log("working...");
 }
-
-
 void print(std::vector <int> const& a) {
 	std::cout << "The vector elements are : ";
 
 	for (int i = 0; i < a.size(); i++)
 		std::cout << a.at(i) << ' ';
+}
+
+int main()
+{
+	std::vector<int> blocks{ 1,4,5,7,4,2,3,6,8,5,2,3,5,6,7 };
+
 }
